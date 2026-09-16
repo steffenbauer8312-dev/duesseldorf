@@ -1,0 +1,19 @@
+name = "leadgen-brevo-form-worker"
+main = "src/index.js"
+compatibility_date = "2024-09-23"
+
+# Konstanten (im Code referenziert über env-Vars; nicht-geheime Werte)
+# Secret BREVO_API_KEY separat setzen via:
+#   wrangler secret put BREVO_API_KEY
+#
+# Routes werden im Cloudflare Dashboard konfiguriert (NICHT hier),
+# damit der Worker ohne Re-Deploy auf neue Domains erweitert werden kann.
+#
+# Beispiele für Route-Pattern (im Dashboard → Workers → Settings → Triggers → Routes):
+#   dachgeschossausbaustuttgart.de/api/lead*
+#   dachgeschossausbauberlin.de/api/lead*
+#   dachgeschossausbauduesseldorf.de/api/lead*
+#   ... (alle 24 Domains)
+
+[observability]
+enabled = true

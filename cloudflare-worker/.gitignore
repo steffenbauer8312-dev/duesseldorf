@@ -1,0 +1,12 @@
+# Lokale Entwicklung
+.dev.vars
+.dev.vars.*
+node_modules/
+.wrangler/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store

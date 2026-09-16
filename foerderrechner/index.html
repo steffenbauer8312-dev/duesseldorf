@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Förderrechner für Dachgeschossausbau in Düsseldorf: Berechnen Sie BAFA-Zuschuss, KfW-Kredit und Düsseldorfer Förderung. Stand Mai 2026.">
+  <title>Förderrechner Dachgeschossausbau Düsseldorf | BAFA & KfW 2026</title>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#1E3A5F">
+  <link rel="canonical" href="https://dachgeschossausbauduesseldorf.de/foerderrechner/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #185FA5;
+      --primary-dark: #0C447C;
+      --primary-deep: #042C53;
+      --primary-bg: #E6F1FB;
+      --amber-bg: #FAEEDA;
+      --amber-text: #854F0B;
+      --green: #1D9E75;
+      --green-dark: #0F6E56;
+      --coral-bg: #FAECE7;
+      --coral-text: #993C1D;
+      --text-primary: #1a1a18;
+      --text-secondary: #5a5a55;
+      --text-tertiary: #8a8a85;
+      --bg-primary: #ffffff;
+      --bg-secondary: #f5f4f0;
+      --border: rgba(0,0,0,0.12);
+      --border-strong: rgba(0,0,0,0.22);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --font: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --color-site-primary: #1E3A5F;
+      --color-site-primary-dark: #2C5282;
+      --color-site-primary-light: #E8F4FD;
+      --color-site-accent: #C53030;
+      --color-site-gray-700: #4A5568;
+      --color-site-gray-400: #A0AEC0;
+      --color-site-gray-200: #E2E8F0;
+      --color-site-gray-100: #F7FAFC;
+      --color-site-white: #FFFFFF;
+      --color-site-success: #38A169;
+      --space-xs: 4px; --space-sm: 8px; --space-md: 16px; --space-lg: 24px; --space-xl: 48px; --space-2xl: 80px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05); --shadow-md: 0 4px 6px rgba(0,0,0,0.05); --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+      --transition-fast: 0.2s ease;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text-primary: #ececea;
+        --text-secondary: #a8a8a3;
+        --text-tertiary: #707070;
+        --bg-primary: #1e1e1c;
+        --bg-secondary: #2a2a28;
+        --border: rgba(255,255,255,0.10);
+        --border-strong: rgba(255,255,255,0.18);
+      }
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+      min-height: 100vh;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Site Header */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--color-site-white);
+      box-shadow: var(--shadow-md); z-index: 1000;
+    }
+    .header__inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 var(--space-lg);
+      display: flex; align-items: center; justify-content: space-between; height: 80px;
+    }
+    .logo { display: flex; align-items: center; gap: var(--space-sm); text-decoration: none; }
+    .logo img { height: 50px; width: auto; }
+    .logo-text { font-size: 1.25rem; font-weight: 700; color: var(--color-site-primary); }
+    .logo-text span { color: var(--color-site-accent); }
+    .logo-sub { font-size: 0.875rem; font-weight: 500; color: var(--color-site-gray-700); line-height: 1.2; }
+    .nav { display: flex; align-items: center; gap: var(--space-lg); }
+    .nav__link { font-weight: 500; color: var(--color-site-gray-700); text-decoration: none; position: relative; }
+    .nav__link:hover { color: var(--color-site-primary); }
+    .nav__link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background-color: var(--color-site-primary); transition: width var(--transition-fast); }
+    .nav__link:hover::after { width: 100%; }
+    .nav__link.active { color: var(--color-site-primary); }
+    .nav__link.active::after { width: 100%; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: var(--space-sm) var(--space-md);
+      font-family: var(--font); font-size: 1rem; font-weight: 600;
+      border-radius: 4px; border: 2px solid transparent; cursor: pointer;
+      text-decoration: none; transition: all var(--transition-fast);
+    }
+    .btn--primary { background: var(--color-site-primary); color: var(--color-site-white); border-color: var(--color-site-primary); }
+    .btn--primary:hover { background: var(--color-site-primary-dark); color: var(--color-site-white); }
+    .mobile-toggle { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: var(--space-sm); }
+    .mobile-toggle span { display: block; width: 24px; height: 2px; background: var(--color-site-primary); }
+    @media (max-width: 768px) { .nav { display: none; } .mobile-toggle { display: flex; } }
+
+    /* Page Hero */
+    .page-hero {
+      padding: 140px var(--space-lg) var(--space-xl);
+      background: linear-gradient(135deg, var(--color-site-primary) 0%, var(--color-site-primary-dark) 100%);
+      color: var(--color-site-white);
+    }
+    .page-hero .container { max-width: 900px; margin: 0 auto; }
+    .page-hero h1 { color: var(--color-site-white); margin-bottom: var(--space-md); font-size: 2rem; }
+    .page-hero p { font-size: 1.125rem; color: var(--color-site-primary-light); max-width: 700px; }
+
+    /* SEO Content */
+    .seo-content {
+      max-width: 800px; margin: 0 auto; padding: var(--space-xl) var(--space-lg);
+      background: var(--color-site-white);
+    }
+    .seo-content h2 { color: var(--color-site-primary); font-size: 1.5rem; margin: var(--space-xl) 0 var(--space-md); }
+    .seo-content h2:first-child { margin-top: 0; }
+    .seo-content h3 { color: var(--color-site-primary); font-size: 1.25rem; margin: var(--space-lg) 0 var(--space-sm); }
+    .seo-content p { color: var(--color-site-gray-700); margin-bottom: var(--space-md); line-height: 1.7; }
+    .seo-content strong { color: var(--color-site-primary); }
+
+    /* Calculator Container */
+    .calc-wrapper {
+      max-width: 800px; margin: 0 auto; padding: var(--space-xl) var(--space-lg);
+      background: var(--bg-secondary);
+    }
+    .calc-container { max-width: 720px; margin: 0 auto; }
+
+    .header { margin-bottom: 1.5rem; }
+    .header h2 {
+      font-size: 20px; font-weight: 600; color: var(--text-primary);
+      margin-bottom: 4px; display: flex; align-items: center; gap: 8px;
+    }
+    .header h2 svg { flex-shrink: 0; }
+    .header p { font-size: 13px; color: var(--text-secondary); }
+
+    .section-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.07em; color: var(--text-tertiary); margin-bottom: 10px;
+    }
+
+    .card {
+      background: var(--bg-primary); border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1rem 1.25rem; margin-bottom: 12px;
+    }
+
+    .field-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .field-row:last-child { margin-bottom: 0; }
+    .field-label { font-size: 13px; color: var(--text-secondary); min-width: 175px; flex-shrink: 0; }
+
+    input[type="range"] {
+      -webkit-appearance: none; appearance: none; flex: 1;
+      height: 4px; background: var(--border-strong); border-radius: 2px; outline: none; cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+      background: var(--primary); border: 2px solid white; box-shadow: 0 1px 4px rgba(0,0,0,0.2); cursor: pointer;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--primary); border: 2px solid white; cursor: pointer;
+    }
+
+    .field-val { font-size: 13px; font-weight: 600; color: var(--text-primary); min-width: 80px; text-align: right; }
+
+    .toggle-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 9px 0; border-bottom: 0.5px solid var(--border);
+      cursor: pointer; user-select: none; gap: 12px;
+    }
+    .toggle-row:last-child { border-bottom: none; }
+    .tl { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+    .tl-name { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+    .tl-sub { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+
+    .toggle {
+      width: 40px; height: 22px; border-radius: 11px;
+      border: 0.5px solid var(--border-strong); background: var(--bg-secondary);
+      position: relative; flex-shrink: 0; transition: background 0.2s;
+    }
+    .toggle.on { background: var(--primary); border-color: var(--primary-dark); }
+    .toggle::after {
+      content: ''; position: absolute; left: 3px; top: 3px;
+      width: 14px; height: 14px; border-radius: 50%; background: var(--text-secondary);
+      transition: transform 0.2s, background 0.2s;
+    }
+    .toggle.on::after { transform: translateX(18px); background: white; }
+
+    .results {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px; margin-bottom: 12px;
+    }
+    .metric { background: var(--bg-secondary); border-radius: var(--radius-md); padding: 12px 14px; }
+    .metric .ml { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+    .metric .mv { font-size: 22px; font-weight: 600; color: var(--text-primary); }
+    .metric .mv.blue { color: var(--primary-dark); }
+
+    .divider { height: 0.5px; background: var(--border); margin: 1rem 0; }
+
+    .warn {
+      font-size: 12px; color: var(--amber-text); background: var(--amber-bg);
+      border-radius: var(--radius-md); padding: 8px 12px; margin-bottom: 10px;
+      line-height: 1.5; display: flex; gap: 6px; align-items: flex-start;
+    }
+    .warn svg { flex-shrink: 0; margin-top: 1px; }
+
+    .info-banner {
+      font-size: 12px; color: var(--primary-dark); background: var(--primary-bg);
+      border-radius: var(--radius-md); padding: 8px 12px; margin-bottom: 12px;
+      line-height: 1.5; border: 0.5px solid rgba(24,95,165,0.25);
+      display: flex; gap: 6px; align-items: flex-start;
+    }
+    .info-banner svg { flex-shrink: 0; margin-top: 1px; }
+
+    .tab-bar { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+    .tab {
+      font-size: 12px; padding: 5px 14px; border-radius: 20px;
+      border: 0.5px solid var(--border-strong); cursor: pointer;
+      background: transparent; color: var(--text-secondary); font-family: var(--font);
+      transition: background 0.15s, color 0.15s;
+    }
+    .tab:hover { background: var(--bg-secondary); }
+    .tab.active { background: var(--text-primary); color: var(--bg-primary); border-color: var(--text-primary); }
+
+    .prog-list { display: flex; flex-direction: column; gap: 8px; }
+    .prog-item {
+      display: flex; flex-direction: column; gap: 4px;
+      padding: 12px 14px; border-radius: var(--radius-md);
+      border: 0.5px solid var(--border); background: var(--bg-primary);
+    }
+    .prog-item.active { border-color: var(--primary); background: var(--primary-bg); }
+    .prog-item.inactive { opacity: 0.45; }
+    .prog-item.paused { border-color: #EF9F27; background: #FAEEDA; opacity: 0.8; }
+
+    .prog-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    .prog-header-left { display: flex; flex-direction: column; gap: 2px; }
+    .prog-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+    .prog-item.active .prog-name { color: var(--primary-deep); }
+    .prog-item.paused .prog-name { color: #854F0B; }
+    .prog-amount { font-size: 13px; font-weight: 600; color: var(--primary-dark); white-space: nowrap; }
+    .prog-item.inactive .prog-amount { color: var(--text-tertiary); }
+    .prog-item.paused .prog-amount { color: #854F0B; }
+    .prog-type { font-size: 11px; color: var(--text-tertiary); }
+    .prog-item.active .prog-type { color: var(--primary-dark); }
+    .prog-item.paused .prog-type { color: #854F0B; }
+    .prog-cond { font-size: 11px; color: var(--text-secondary); margin-top: 4px; line-height: 1.6; }
+    .prog-item.active .prog-cond { color: var(--primary-deep); }
+    .prog-item.paused .prog-cond { color: #633806; }
+
+    .combo-badge {
+      font-size: 11px; padding: 3px 9px; border-radius: var(--radius-md);
+      display: inline-flex; align-items: center; gap: 4px;
+      margin-top: 3px; font-weight: 500;
+    }
+    .combo-yes { background: #E1F5EE; color: #0F6E56; }
+    .combo-no  { background: var(--coral-bg); color: var(--coral-text); }
+    .combo-warn { background: var(--amber-bg); color: var(--amber-text); }
+
+    .source-links { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
+    .source-link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; color: var(--primary); text-decoration: none; width: fit-content;
+    }
+    .source-link:hover { text-decoration: underline; }
+    .prog-item.paused .source-link { color: #854F0B; }
+
+    .footnote {
+      font-size: 11px; color: var(--text-tertiary); line-height: 1.6;
+      margin-top: 12px; padding-top: 12px; border-top: 0.5px solid var(--border);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, var(--color-site-primary) 0%, var(--color-site-primary-dark) 100%);
+      color: var(--color-site-white); text-align: center;
+      padding: var(--space-2xl) var(--space-lg);
+    }
+    .cta-section h2 { color: var(--color-site-white); margin-bottom: var(--space-md); }
+    .cta-section p { color: var(--color-site-primary-light); max-width: 600px; margin: 0 auto var(--space-lg); }
+    .btn--white { background: var(--color-site-white); color: var(--color-site-primary); border-color: var(--color-site-white); }
+    .btn--white:hover { background: var(--color-site-primary-light); color: var(--color-site-primary); }
+    .btn--lg { padding: var(--space-md) var(--space-xl); font-size: 1.125rem; }
+
+    /* Footer */
+    .footer { background: var(--color-site-primary); color: var(--color-site-primary-light); padding: var(--space-xl) 0 var(--space-lg); }
+    .footer__grid { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-lg); display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-xl); margin-bottom: var(--space-xl); }
+    .footer__col h4 { color: var(--color-site-white); margin-bottom: var(--space-md); }
+    .footer__links { list-style: none; }
+    .footer__links li { margin-bottom: var(--space-sm); }
+    .footer__links a { color: var(--color-site-primary-light); font-size: 0.9375rem; text-decoration: none; }
+    .footer__links a:hover { color: var(--color-site-white); }
+    .footer__bottom { max-width: 1200px; margin: 0 auto; padding: var(--space-lg) var(--space-lg) 0; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.875rem; }
+    @media (max-width: 768px) { .footer__grid { grid-template-columns: 1fr; } }
+
+    /* Schema Markup Container */
+    .schema-container { display: none; }
+
+    @media (max-width: 520px) {
+      .field-row { flex-wrap: wrap; }
+      .field-label { min-width: 100%; }
+      .field-val { min-width: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header__inner">
+      <a href="/" class="logo">
+        <img src="/logo-dach.png" alt="Dachgeschossausbau Düsseldorf">
+        <span class="logo-text">Dachgeschossausbau<span>.</span></span><br><span class="logo-sub">Düsseldorf</span>
+      </a>
+      <nav class="nav">
+        <a href="/leistungen/" class="nav__link">Leistungen</a>
+        <a href="/kosten/" class="nav__link">Kosten</a>
+        <a href="/foerderrechner/" class="nav__link active">Förderrechner</a>
+        <a href="/ratgeber/" class="nav__link">Ratgeber</a>
+        <a href="/kontakt/" class="btn btn--primary">Beratung anfragen</a>
+      </nav>
+      <button class="mobile-toggle" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <h1>Förderung für Dachgeschossausbau in Düsseldorf</h1>
+      <p>BAFA, KfW, Düsseldorf, NRW – finden Sie mit unserem Rechner heraus, welche Förderungen für Ihr Projekt verfügbar sind.</p>
+    </div>
+  </section>
+
+  <!-- SEO Content -->
+  <section class="seo-content">
+    <h2 id="welche-foerderungen">Welche Förderungen gibt es für den Dachgeschossausbau in Düsseldorf?</h2>
+    <p>Wer in Düsseldorf sein Dachgeschoss ausbauen möchte, kann von mehreren Förderprogrammen auf Bundes- und Landesebene profitieren. Unser kostenloser Förderrechner zeigt Ihnen individuell, welche Förderungen für Ihr Vorhaben aktuell verfügbar sind – und berechnet sekundenschnell Ihren möglichen Zuschuss.</p>
+
+    <p>Die wichtigste Fördergrundlage ist die <strong>BAFA-Förderung im Rahmen der Bundesförderung für effiziente Gebäude (BEG)</strong>. Eigentümer erhalten für die energetische Verbesserung der Gebäudehülle – also Dachdämmung und Dachflächenfenster – einen Zuschuss von 15 Prozent der förderfähigen Kosten. Mit einem individuellen Sanierungsfahrplan (iSFP), erstellt durch einen zertifizierten Energieberater, steigt der Fördersatz auf 20 Prozent. Die förderfähige Kostenpauschale liegt bei 30.000 Euro pro Wohneinheit und Jahr, mit iSFP bei bis zu 60.000 Euro.</p>
+
+    <p>Wer eine Komplettsanierung zum KfW-Effizienzhaus plant, kommt zusätzlich für den <strong>KfW-Kredit 261</strong> infrage: bis zu 150.000 Euro zinsgünstiger Kredit je Wohneinheit, kombiniert mit einem Tilgungszuschuss von 5 bis 45 Prozent. Auch der Ausbau eines bislang unbeheizten Dachgeschosses zu Wohnraum gilt laut KfW-Merkblatt als förderfähige Sanierungsmaßnahme.</p>
+
+    <p>Die Stadt Düsseldorf ergänzt das Bundesangebot mit dem Programm <strong>„Klimafreundliches Wohnen und Arbeiten"</strong>. Es fördert die Dachdämmung flächenbasiert: 20 Euro pro Quadratmeter für herkömmliche Dämmstoffe, 60 Euro pro Quadratmeter für umweltfreundliche Materialien mit Blauem Engel oder natureplus-Zertifikat. Das Programm wird aktuell überarbeitet – neue Anträge sind vorübergehend nicht möglich. Bitte aktuelle Verfügbarkeit unter duesseldorf.de/saga prüfen.</p>
+
+    <h2 id="kombinierbarkeit">Kombinierbarkeit und wichtige Besonderheiten in Düsseldorf</h2>
+    <p>BAFA-Förderung und KfW 261 lassen sich miteinander und mit dem städtischen Programm kombinieren, solange die Gesamtförderung 50 Prozent der Projektkosten nicht überschreitet. Anders als in anderen Städten schließt Düsseldorf die Kombination des eigenen Programms mit dem Steuerbonus nach § 35c EStG ausdrücklich aus. Zudem gilt in Düsseldorf: Die Beauftragung von Handwerkern darf erst nach Erhalt der städtischen Fördernummer erfolgen – der Antrag muss also noch vor der Auftragsvergabe gestellt werden.</p>
+
+    <h2 id="jetzt-berechnen">Jetzt Förderung berechnen</h2>
+    <p>Nutzen Sie unseren interaktiven Förderrechner: Baukosten, Dachfläche und Voraussetzungen eingeben – und sofort sehen, welche Programme anwendbar sind. Alle Förderprogramme sind direkt mit den offiziellen Quellen von BAFA, KfW und der Landeshauptstadt Düsseldorf verlinkt. Sprechen Sie uns an – wir begleiten Sie vom ersten Förderantrag bis zur schlüsselfertigen Übergabe.</p>
+  </section>
+
+  <!-- Calculator -->
+  <div class="calc-wrapper">
+    <div class="calc-container">
+
+      <div class="header">
+        <h2>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Förderrechner – Dachgeschossausbau Düsseldorf
+        </h2>
+        <p>Stand Mai 2026 · Bundesförderung (BAFA / KfW) + Stadt Düsseldorf + NRW</p>
+      </div>
+
+      <div class="info-banner">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Das städtische Programm <strong>„Klimafreundliches Wohnen und Arbeiten"</strong> wird aktuell überarbeitet – neue Anträge sind vorübergehend nicht möglich. Die Bundesförderung über BAFA und KfW ist davon nicht betroffen und läuft uneingeschränkt weiter.</span>
+      </div>
+
+      <div class="card">
+        <div class="section-label">Ihr Vorhaben</div>
+        <div class="field-row">
+          <span class="field-label">Geschätzte Baukosten</span>
+          <input type="range" min="15000" max="150000" step="1000" value="60000" id="sliderKosten" oninput="recalc()">
+          <span class="field-val" id="valKosten">60.000 €</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Dachfläche (m²)</span>
+          <input type="range" min="30" max="300" step="5" value="80" id="sliderFlaeche" oninput="recalc()">
+          <span class="field-val" id="valFlaeche">80 m²</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">davon Dämmung / Hülle</span>
+          <input type="range" min="0" max="100" step="5" value="50" id="sliderDaemmAnt" oninput="recalc()">
+          <span class="field-val" id="valDaemmAnt">50 %</span>
+        </div>
+        <div class="field-row">
+          <span class="field-label">Wohneinheiten im Gebäude</span>
+          <input type="range" min="1" max="6" step="1" value="1" id="sliderWE" oninput="recalc()">
+          <span class="field-val" id="valWE">1</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">Voraussetzungen & Optionen</div>
+        <div id="toggles"></div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section-label">Ergebnis</div>
+      <div class="results" id="results"></div>
+      <div id="warnBox"></div>
+
+      <div class="section-label" style="margin-top:8px">Förderprogramme im Detail</div>
+      <div class="tab-bar">
+        <button class="tab active" onclick="setTab('alle',this)">Alle</button>
+        <button class="tab" onclick="setTab('bund',this)">Bundesebene</button>
+        <button class="tab" onclick="setTab('duesseldorf',this)">Stadt Düsseldorf</button>
+        <button class="tab" onclick="setTab('nrw',this)">NRW</button>
+      </div>
+      <div class="prog-list" id="progList"></div>
+
+      <p class="footnote">
+        Alle Angaben ohne Gewähr. Förderhöhen und -bedingungen können sich jederzeit ändern.
+        Bitte stellen Sie Förderanträge immer <strong>vor</strong> Beauftragung der Handwerker.
+        Ausnahme Düsseldorf städtisch: Antrag erst nach Erhalt der Fördernummer beauftragen.
+        Quellen: BAFA, KfW, Landeshauptstadt Düsseldorf, NRW.Förderung (Stand Mai 2026).
+      </p>
+
+    </div>
+  </div>
+
+  <!-- CTA Section -->
+  <section class="leadform-section">
+  <div class="leadform-wrap">
+    <h2 style="color:var(--color-primary);margin-bottom:8px;font-size:1.75rem;text-align:center">Kostenlose Erstberatung anfragen</h2>
+    <p class="leadform-sub">Erzählen Sie uns von Ihrem Projekt – wir melden uns innerhalb von 24 Stunden.</p>
+    <form action="/api/lead" method="POST">
+      <input type="hidden" name="service" value="Dachgeschossausbau">
+      <input type="hidden" name="city" value="Düsseldorf">
+      <input type="hidden" name="source" value="Website Formular">
+      <input type="hidden" name="redirect" value="/danke/">
+      <input type="text" name="url" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="leadform-row">
+        <div class="leadform-group">
+          <label for="lf-name" class="leadform-label">Name *</label>
+          <input type="text" id="lf-name" name="name" class="leadform-input" required>
+        </div>
+        <div class="leadform-group">
+          <label for="lf-email" class="leadform-label">E-Mail *</label>
+          <input type="email" id="lf-email" name="email" class="leadform-input" required>
+        </div>
+      </div>
+      <div class="leadform-row">
+        <div class="leadform-group">
+          <label for="lf-phone" class="leadform-label">Telefon *</label>
+          <input type="tel" id="lf-phone" name="phone" class="leadform-input" required>
+        </div>
+        <div class="leadform-group">
+          <label for="lf-projekttyp" class="leadform-label">Projekttyp *</label>
+          <select id="lf-projekttyp" name="projekttyp" class="leadform-select" required>
+            <option value="">Bitte wählen…</option>
+            <option value="einfacher-ausbau">Einfacher Ausbau (Dämmung, Boden, Ausbau)</option>
+            <option value="wohnung-dachgeschoss">Dachgeschossausbau (inkl. Bad, Elektrik, Trockenbau)</option>
+            <option value="dachaufstockung">Dachaufstockung (komplette neue Etage)</option>
+            <option value="dachgaube">Dachgaube / Dachaufbau</option>
+            <option value="dachsanierung">Dachsanierung / Neueindeckung</option>
+            <option value="dachdaemmung">Dachdämmung nach GEG</option>
+            <option value="investor-mehrfamilienhaus">Investor: Mehrfamilienhaus</option>
+            <option value="denkmal">Denkmalgeschütztes Gebäude</option>
+            <option value="sonstiges">Sonstiges</option>
+          </select>
+        </div>
+      </div>
+      <div class="leadform-group">
+        <label for="lf-stadtteil" class="leadform-label">Düsseldorfer Stadtteil / Region</label>
+        <select id="lf-stadtteil" name="stadtteil" class="leadform-select">
+          <option value="">Bitte wählen…</option>
+          <option value="altstadt">Altstadt</option><option value="angermund">Angermund</option><option value="benrath">Benrath</option><option value="bilk">Bilk</option><option value="carlstadt">Carlstadt</option><option value="derendorf">Derendorf</option><option value="duesseltal">Düsseltal</option><option value="eller">Eller</option><option value="flingern">Flingern</option><option value="flehe">Flehe</option><option value="friedrichstadt">Friedrichstadt</option><option value="garath">Garath</option><option value="gerresheim">Gerresheim</option><option value="golzheim">Golzheim</option><option value="grafenberg">Grafenberg</option><option value="hamm">Hamm</option><option value="hassels">Hassels</option><option value="hellerhof">Hellerhof</option><option value="hubbelrath">Hubbelrath</option><option value="kaiserswerth">Kaiserswerth</option><option value="lierenfeld">Lierenfeld</option><option value="lohausen">Lohausen</option><option value="ludenberg">Ludenberg</option><option value="moersenbroich">Mörsenbroich</option><option value="oberbilk">Oberbilk</option><option value="pempelfort">Pempelfort</option><option value="rath">Rath</option><option value="reisholz">Reisholz</option><option value="stadtmitte">Stadtmitte</option><option value="stockum">Stockum</option><option value="unterbach">Unterbach</option><option value="unterbilk">Unterbilk</option><option value="urdenbach">Urdenbach</option><option value="vennhausen">Vennhausen</option><option value="volmerswerth">Volmerswerth</option><option value="wersten">Wersten</option><option value="wittlaer">Wittlaer</option><option value="andere">Andere</option><option value="umgebung">Umgebung von Düsseldorf</option>
+        </select>
+      </div>
+      <div class="leadform-group">
+        <label for="lf-message" class="leadform-label">Ihre Nachricht</label>
+        <textarea id="lf-message" name="message" class="leadform-textarea" rows="4" placeholder="Was planen Sie? Welche Vorstellungen haben Sie bereits? Wann möchten Sie loslegen?"></textarea>
+      </div>
+      <div class="leadform-check">
+        <input type="checkbox" id="lf-privacy" name="privacy" required>
+        <label for="lf-privacy">Mit dem Absenden stimmen Sie unserer <a href="/datenschutz/">Datenschutzerklärung</a> zu. *</label>
+      </div>
+      <button type="submit" class="leadform-submit">Kostenlose Erstberatung anfragen</button>
+    </form>
+  </div>
+</section>
+
+  <section class="cta-section">
+    <h2>Individuelle Förderberatung</h2>
+    <p>Wir helfen Ihnen, die optimale Förderstrategie für Ihren Dachgeschossausbau zu finden – kostenlose Erstberatung in Düsseldorf.</p>
+    <a href="/kontakt/" class="btn btn--white btn--lg">Kostenlose Beratung anfragen</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__col">
+        <p>Spezialisiert auf Dachgeschossausbau in Düsseldorf. Festpreis, fester Termin.</p>
+      </div>
+      <div class="footer__col">
+        <h4>Leistungen</h4>
+        <ul class="footer__links">
+          <li><a href="/leistungen/dachgeschossausbau/">Dachgeschossausbau</a></li>
+          <li><a href="/leistungen/dachgauben/">Dachgauben</a></li>
+          <li><a href="/leistungen/dachdaemmung/">Dachdämmung</a></li>
+          <li><a href="/leistungen/trockenbau/">Trockenbau</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Ratgeber</h4>
+        <ul class="footer__links">
+          <li><a href="/ratgeber/genehmigung-nrw/">Baugenehmigung NRW</a></li>
+          <li><a href="/ratgeber/kniestock/">Kniestock-Anforderungen</a></li>
+          <li><a href="/ratgeber/dachgauben-planung/">Dachgauben planen</a></li>
+          <li><a href="/ratgeber/dachdaemmung-geg/">Dachdämmung nach GEG</a></li>
+          <li><a href="/ratgeber/sommerhitze/">Sommerhitze im Dach</a></li>
+          <li><a href="/ratgeber/foerdermittel/">Fördermittel 2026</a></li>
+          <li><a href="/ratgeber/dachsanierung-planung/">Dachsanierung planen</a></li>
+          <li><a href="/ratgeber/altbau-dachausbau/">Altbau-Dachausbau</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Kontakt</h4>
+        <ul class="footer__links">
+          <li><a href="tel:+4915216117439">+49 152 1611 7439</a></li>
+          <li><a href="mailto:info@dachgeschossausbauduesseldorf.de">info@dachgeschossausbauduesseldorf.de</a></li>
+          <li>Hammer Str. 19<br>40219 Düsseldorf</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2026 Dachgeschossausbau Düsseldorf | <a href="/impressum/" style="color:var(--color-site-primary-light)">Impressum</a> | <a href="/datenschutz/" style="color:var(--color-site-primary-light)">Datenschutz</a></p>
+    </div>
+  </footer>
+
+  <script>
+const toggleDefs = [
+  { id: 'gebaeude5j',       label: 'Gebäude mind. 5 Jahre alt',               sub: 'Pflicht für BAFA und KfW 261; auch für Düsseldorfer Programm empfohlen',      val: true  },
+  { id: 'isfp',             label: 'Individueller Sanierungsfahrplan (iSFP)',   sub: '+5 % BAFA-Bonus; vom zertifizierten Energieberater erstellen lassen',          val: false },
+  { id: 'energieberater',   label: 'Energieeffizienz-Experte eingebunden',      sub: 'Pflicht für BAFA BEG EM und KfW 261; empfohlen für SAGA-Beratung Düsseldorf',  val: true  },
+  { id: 'komplettsanierung',label: 'Komplettsanierung zum Effizienzhaus',       sub: 'Für KfW 261 – Gebäude erreicht mind. Effizienzhaus-Stufe 85',                  val: false },
+  { id: 'umweltfreundlich', label: 'Umweltfreundlicher Dämmstoff (Blauer Engel / natureplus)', sub: 'Düsseldorfer Dachdämmung: 60 statt 20 €/m² (Schrägdach)', val: false },
+  { id: 'eigennutzung',     label: 'Selbstgenutzte Immobilie',                  sub: 'Für einkommensabhängige KfW-Zinsverbilligung und Steuerbonus § 35c EStG',      val: true  },
+  { id: 'duesseldorfStadt', label: 'Immobilie im Düsseldorfer Stadtgebiet',     sub: 'Voraussetzung für das städtische Förderprogramm',                              val: true  },
+];
+
+let state = {};
+toggleDefs.forEach(t => { state[t.id] = t.val; });
+
+const toggleContainer = document.getElementById('toggles');
+toggleDefs.forEach(t => {
+  const row = document.createElement('div');
+  row.className = 'toggle-row';
+  row.innerHTML =
+    `<div class="tl"><span class="tl-name">${t.label}</span><span class="tl-sub">${t.sub}</span></div>` +
+    `<div class="toggle ${t.val ? 'on' : ''}" id="tog_${t.id}" role="switch" aria-checked="${t.val}" aria-label="${t.label}"></div>`;
+  row.addEventListener('click', () => {
+    state[t.id] = !state[t.id];
+    const tog = document.getElementById('tog_' + t.id);
+    tog.classList.toggle('on', state[t.id]);
+    tog.setAttribute('aria-checked', state[t.id]);
+    recalc();
+  });
+  toggleContainer.appendChild(row);
+});
+
+let activeTab = 'alle';
+function setTab(tab, btn) {
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  recalc();
+}
+
+function fmt(n) { return n.toLocaleString('de-DE') + '\u00a0€'; }
+
+const iconCheck = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>`;
+const iconX     = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+const iconPause = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>`;
+const iconWarn  = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`;
+const iconLink  = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+const iconInfo  = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
+
+function recalc() {
+  const kosten    = parseInt(document.getElementById('sliderKosten').value);
+  const flaeche   = parseInt(document.getElementById('sliderFlaeche').value);
+  const daemmAnt  = parseInt(document.getElementById('sliderDaemmAnt').value) / 100;
+  const we        = parseInt(document.getElementById('sliderWE').value);
+
+  document.getElementById('valKosten').textContent   = kosten.toLocaleString('de-DE') + '\u00a0€';
+  document.getElementById('valFlaeche').textContent  = flaeche + '\u00a0m²';
+  document.getElementById('valDaemmAnt').textContent = Math.round(daemmAnt * 100) + '\u00a0%';
+  document.getElementById('valWE').textContent       = we;
+
+  const S = state;
+  const daemmKosten = kosten * daemmAnt;
+
+  // BAFA BEG EM
+  const bafaRate   = S.isfp ? 0.20 : 0.15;
+  const bafaCap    = (S.isfp ? 60000 : 30000) * we;
+  const bafaBase   = Math.min(daemmKosten, bafaCap);
+  const bafaActive = S.gebaeude5j && S.energieberater;
+  const bafaBetrag = bafaActive ? Math.round(bafaBase * bafaRate) : 0;
+
+  // KfW 261
+  const kfw261Active = S.gebaeude5j && S.energieberater && S.komplettsanierung;
+  const kfw261Max    = Math.min(kosten * we, 150000 * we);
+  const kfw261Tilg   = kfw261Active ? Math.round(kfw261Max * 0.05) : 0;
+
+  // Düsseldorf städtisch – Klimafreundliches Wohnen (aktuell pausiert)
+  const dussRate   = S.umweltfreundlich ? 60 : 20;
+  const dussBetrag = S.duesseldorfStadt ? Math.min(
+    Math.round(flaeche * dussRate),
+    Math.round(kosten * 0.50),
+    100000
+  ) : 0;
+  const dussPausiert = true;
+
+  const gesamt      = bafaBetrag + kfw261Tilg;
+  const eigenanteil = Math.max(0, kosten - gesamt);
+  const foerderQuote = kosten > 0 ? Math.round((gesamt / kosten) * 100) : 0;
+
+  document.getElementById('results').innerHTML =
+    `<div class="metric"><div class="ml">Bundesförderung (aktiv)</div><div class="mv blue">${fmt(gesamt)}</div></div>` +
+    `<div class="metric"><div class="ml">Städtisch (pausiert)*</div><div class="mv" style="font-size:16px;color:var(--amber-text)">${fmt(dussBetrag)}</div></div>` +
+    `<div class="metric"><div class="ml">Eigenanteil (ohne städt.)</div><div class="mv">${fmt(eigenanteil)}</div></div>` +
+    `<div class="metric"><div class="ml">Bundesförderquote</div><div class="mv">${foerderQuote}\u00a0%</div></div>`;
+
+  const warns = [];
+  if (!S.gebaeude5j)    warns.push('Gebäude muss mind. 5 Jahre alt sein – ohne diese Voraussetzung sind BAFA und KfW 261 nicht möglich.');
+  if (!S.energieberater) warns.push('Ohne eingebundenen Energieeffizienz-Experten (EEE) entfällt die BAFA-Förderung.');
+  if (S.komplettsanierung && !S.energieberater) warns.push('KfW 261 erfordert zwingend Fachplanung und Baubegleitung durch einen EEE.');
+  warns.push('Das städtische Programm „Klimafreundliches Wohnen und Arbeiten" wird aktuell überarbeitet. Neue Anträge sind nicht möglich. Bitte aktuelle Infos unter duesseldorf.de/saga prüfen.');
+  document.getElementById('warnBox').innerHTML =
+    warns.map(w => `<div class="warn">${iconWarn}<span>${w}</span></div>`).join('');
+
+  const progs = [
+    {
+      id: 'bafa', ebene: 'bund', status: bafaActive ? 'active' : 'inactive',
+      name: 'BAFA BEG Einzelmaßnahmen (BEG EM)',
+      type: 'Zuschuss – nicht rückzahlbar',
+      betrag: bafaBetrag,
+      kombiIcon: 'yes',
+      kombiText: 'Kombinierbar mit KfW 261, Düsseldorfer Städtischem Programm (wenn wieder aktiv), Steuerbonus § 35c alternativ',
+      bedingungen: [
+        'Gebäude mind. 5 Jahre alt',
+        'Antrag zwingend vor Auftragsvergabe beim BAFA stellen',
+        'Energieeffizienz-Experte (EEE) einbinden',
+        `Fördersatz: ${bafaRate * 100}\u00a0% ${S.isfp ? '(inkl. +5\u00a0% iSFP-Bonus)' : '– mit iSFP auf 20\u00a0% erhöhbar'}`,
+        `Förderfähige Kostenpauschale: ${S.isfp ? '60.000' : '30.000'}\u00a0€ / WE / Jahr`,
+        'U-Wert Dach / Oberste Decke: ≤ 0,14 W/(m²K)',
+        'Dachdämmung, Dachflächenfenster und Dachausbau (als Hüllmaßnahme) sind förderfähig',
+      ],
+      links: [
+        { label: 'BAFA – Gebäudehülle (offiziell)', url: 'https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/Sanierung_Wohngebaeude/Gebaeudehuelle/gebaeudehuelle_node.html' },
+        { label: 'BAFA – Antragstellung & Portal',  url: 'https://www.bafa.de/DE/Energie/Effiziente_Gebaeude/Informationen_fuer_Antragstellende/informationen_fuer_antragstellende_node.html' },
+      ]
+    },
+    {
+      id: 'kfw261', ebene: 'bund', status: kfw261Active ? 'active' : 'inactive',
+      name: 'KfW 261 – Wohngebäude-Kredit (Effizienzhaus)',
+      type: 'Zinsgünstiger Kredit + Tilgungszuschuss',
+      betrag: kfw261Tilg,
+      kombiIcon: 'yes',
+      kombiText: 'Kombinierbar mit BAFA BEG EM und Düsseldorfer Städtischem Programm (wenn wieder aktiv)',
+      bedingungen: [
+        'Komplettsanierung auf mind. Effizienzhaus-Stufe 85',
+        'Gebäude mind. 5 Jahre alt',
+        'Antrag vor Baubeginn über eine Hausbank stellen',
+        'Fachplanung + Baubegleitung durch EEE ist Pflicht',
+        `Kredit max. ${(150000 * we).toLocaleString('de-DE')}\u00a0€ (${we}\u00a0WE × 150.000\u00a0€)`,
+        'Tilgungszuschuss: 5\u00a0% (EH\u00a085) bis 45\u00a0% (EH\u00a040 EE)',
+        'Dachgeschossausbau (vormals unbeheizt → Wohnraum) gilt laut KfW als förderfähige Sanierung',
+        'Budget 2026 begrenzt (2 Mrd.\u00a0€) – frühzeitig beantragen!',
+      ],
+      links: [
+        { label: 'KfW 261 – offizielle Produktseite', url: 'https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/F%C3%B6rderprodukte/Bundesf%C3%B6rderung-f%C3%BCr-effiziente-Geb%C3%A4ude-Wohngeb%C3%A4ude-Kredit-(261-262)/' },
+        { label: 'KfW – Energieeffizienz-Experten finden', url: 'https://www.kfw.de/inlandsfoerderung/Privatpersonen/Bestehende-Immobilie/Energieeffizient-Sanieren/Energieeffizienz-Experten/' },
+      ]
+    },
+    {
+      id: 'duesseldorf', ebene: 'duesseldorf', status: 'paused',
+      name: 'Düsseldorf – Klimafreundliches Wohnen und Arbeiten ⚠ pausiert',
+      type: 'Städtischer Zuschuss – flächenbasiert (aktuell keine neuen Anträge)',
+      betrag: dussBetrag,
+      kombiIcon: 'warn',
+      kombiText: 'Grundsätzlich kombinierbar mit BAFA und KfW (max. 50\u00a0% der Gesamtkosten); Kumulierung mit Steuerbonus § 35c ist ausgeschlossen',
+      bedingungen: [
+        '⚠ Programm wird überarbeitet – neue Anträge aktuell nicht möglich',
+        'Immobilie im Düsseldorfer Stadtgebiet, mindestens 2.000 € Investition',
+        'Wärmedämmung Schrägdach: 60 €/m² (umweltfreundlicher Dämmstoff, Blauer Engel / natureplus, Klasse A) oder 20 €/m² (sonstige)',
+        'Wärmedämmung Flachdach: 60 €/m² (umweltfreundlich) oder 20 €/m² (sonstige)',
+        'Kombination Dachdämmung + Dachbegrünung: zusätzlich +40 €/m²',
+        'Max. 50\u00a0% der Gesamtkosten und max. 100.000 € pro Förderempfänger/Jahr',
+        'Antragsstellung über Förderportal; Beauftragung erst nach Erhalt der Fördernummer',
+        'Düsseldorf-spezifisch: Kumulierung mit städtischem Steuerbonus § 35c EStG ist ausgeschlossen',
+      ],
+      links: [
+        { label: 'Landeshauptstadt Düsseldorf – SAGA Förderprogramm (offiziell)', url: 'https://www.duesseldorf.de/saga/klimafreundliches-wohnen-und-arbeiten' },
+        { label: 'Förderrichtlinie 19.303 – vollständiger Text', url: 'https://www.duesseldorf.de/stadtrecht/1/19/19-303/' },
+        { label: 'Förderportal Düsseldorf', url: 'https://foerderung.duesseldorf.de/Startpage.do' },
+      ]
+    },
+    {
+      id: 'nrw', ebene: 'nrw', status: 'inactive',
+      name: 'progres.nrw – Klimaschutztechnik',
+      type: 'NRW-Zuschuss (primär Anlagentechnik)',
+      betrag: 0,
+      kombiIcon: 'yes',
+      kombiText: 'Kombinierbar mit BAFA und KfW; nicht mit anderen NRW-Landesprogrammen kumulierbar',
+      bedingungen: [
+        'Schwerpunkt: Wärmepumpen, Solarthermie, Lüftungsanlagen – keine direkte Dachdämmungsförderung',
+        'Vorhaben in NRW, Antrag vor Maßnahmenbeginn',
+        'Aktuell pausiert (Stand Jan. 2026) – voraussichtlich ab Feb. 2026 wieder offen',
+        'Relevant, wenn der Dachausbau mit neuer Heizung oder PV-Anlage kombiniert wird',
+      ],
+      links: [
+        { label: 'progres.nrw – offizielle Fördesseite NRW', url: 'https://www.nordrhein-westfalen-foerdert.nrw/foerdermassnahmen/progresnrw-klimaschutztechnik-2026' },
+      ]
+    },
+    {
+      id: 'steuer', ebene: 'bund', status: 'inactive',
+      name: 'Steuerbonus § 35c EStG (Alternative)',
+      type: 'Steuerermäßigung – alternativ zu BAFA/KfW-Zuschuss',
+      betrag: 0,
+      kombiIcon: 'no',
+      kombiText: 'NICHT kombinierbar mit BAFA/KfW-Zuschuss für dieselbe Maßnahme; laut Düsseldorfer Richtlinie auch nicht mit dem städtischen Programm kumulierbar',
+      bedingungen: [
+        '20\u00a0% der Sanierungskosten über 3 Jahre absetzbar (7\u00a0% / 7\u00a0% / 6\u00a0%)',
+        'Nur selbst genutzte Eigentumswohnungen / Häuser',
+        'Mindeststandards an Dämmung wie bei BEG',
+        'Sinnvolle Alternative, wenn BAFA-Antrag versäumt wurde',
+        'Achtung Düsseldorf: Nicht kombinierbar mit städtischem Förderprogramm',
+      ],
+      links: [
+        { label: 'BMF – § 35c EStG (Bundesfinanzministerium)', url: 'https://www.bundesfinanzministerium.de/Content/DE/FAQ/2020-03-09-steuerforderung-energetische-gebaudesanierung.html' },
+      ]
+    },
+  ];
+
+  const list = document.getElementById('progList');
+  list.innerHTML = '';
+  progs
+    .filter(p => activeTab === 'alle' || p.ebene === activeTab)
+    .forEach(p => {
+      const comboBadge = p.kombiIcon === 'yes'
+        ? `<span class="combo-badge combo-yes">${iconCheck} Kombinierbar</span>`
+        : p.kombiIcon === 'warn'
+        ? `<span class="combo-badge combo-warn">${iconInfo} Bedingt kombinierbar</span>`
+        : `<span class="combo-badge combo-no">${iconX} Nicht kombinierbar mit BAFA/KfW</span>`;
+
+      const betragText = p.betrag > 0
+        ? fmt(p.betrag) + (p.status === 'paused' ? '\u00a0(pausiert)' : '')
+        : (p.id === 'kfw261' && p.status === 'active' ? '(Kredit + Tilgungszuschuss)' : 'nicht anwendbar');
+
+      const linksHtml = p.links
+        .map(l => `<a class="source-link" href="${l.url}" target="_blank" rel="noopener noreferrer">${iconLink} ${l.label}</a>`)
+        .join('');
+
+      list.innerHTML +=
+        `<div class="prog-item ${p.status}">` +
+          `<div class="prog-header">` +
+            `<div class="prog-header-left">` +
+              `<span class="prog-name">${p.name}</span>` +
+              `<span class="prog-type">${p.type}</span>` +
+            `</div>` +
+            `<span class="prog-amount">${betragText}</span>` +
+          `</div>` +
+          `<div class="prog-cond">${p.bedingungen.map(b => '· ' + b).join('<br>')}</div>` +
+          `<div style="margin-top:5px">${comboBadge}</div>` +
+          `<div class="prog-cond" style="margin-top:3px;font-style:italic">${p.kombiText}</div>` +
+          `<div class="source-links">${linksHtml}</div>` +
+        `</div>`;
+    });
+}
+
+recalc();
+  </script>
+
+  <!-- Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Förderrechner Dachgeschossausbau Düsseldorf",
+    "description": "Berechnen Sie BAFA-Zuschuss, KfW-Kredit und Düsseldorfer Förderung für Ihren Dachgeschossausbau.",
+    "url": "https://dachgeschossausbauduesseldorf.de/foerderrechner/",
+    "author": {
+      "@type": "HomeAndConstructionBusiness",
+      "name": "Dachgeschossausbau Düsseldorf"
+    }
+  }
+  </script>
+
+</body>
+</html>
