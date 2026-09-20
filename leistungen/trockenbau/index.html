@@ -18,6 +18,18 @@
 
     gtag('config', 'G-5SYTNJG6Z3');
   </script>
+  <script>
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest && e.target.closest('a[href]');
+      if (!link) return;
+      var href = link.getAttribute('href') || '';
+      if (href.indexOf('tel:') === 0) {
+        gtag('event', 'contact', { method: 'phone', href: href });
+      } else if (href.indexOf('mailto:') === 0) {
+        gtag('event', 'contact', { method: 'email', href: href });
+      }
+    });
+  </script>
   <link rel="canonical" href="https://dachgeschossausbauduesseldorf.de/leistungen/trockenbau/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
