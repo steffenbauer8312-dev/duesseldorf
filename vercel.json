@@ -1,6 +1,6 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
+  "trailingSlash": true,
   "redirects": [
     { "source": "/leistungen/carport/", "destination": "/leistungen/carportbau/", "permanent": true },
     { "source": "/leistungen/sommerhitze-service/", "destination": "/ratgeber/sommerhitze/", "permanent": true },
