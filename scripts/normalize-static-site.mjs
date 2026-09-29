@@ -28,6 +28,7 @@ for (const path of htmlFiles(root)) {
   html = html.replace(/U\s*<\s*0\.24\s*W\/m²K/g, 'U &lt; 0,24 W/m²K');
   html = html.replace(/Hammer Str\. 19/g, 'Krehlstr. 100');
   html = html.replace(/40219 Düsseldorf/g, '70565 Stuttgart');
+  html = html.replaceAll('https://dachgeschossausbauduesseldorf.de', 'https://www.dachgeschossausbauduesseldorf.de');
   html = html.replaceAll('/leistungen/carport/', '/leistungen/carportbau/');
   html = html.replaceAll('/leistungen/sommerhitze-service/', '/ratgeber/sommerhitze/');
   html = html.replaceAll('/leistungen/aufsparrendämmung/', '/leistungen/aufsparrendaemmung/');
