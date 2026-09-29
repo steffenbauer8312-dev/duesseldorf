@@ -1,6 +1,14 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/leistungen/carport/", "destination": "/leistungen/carportbau/", "permanent": true },
+    { "source": "/leistungen/sommerhitze-service/", "destination": "/ratgeber/sommerhitze/", "permanent": true },
+    { "source": "/leistungen/aufsparrendämmung/", "destination": "/leistungen/aufsparrendaemmung/", "permanent": true },
+    { "source": "/leistungen/zwischensparrendämmung/", "destination": "/leistungen/zwischensparrendaemmung/", "permanent": true },
+    { "source": "/leistungen/sparrren-austauschen-oder-verstaerken/", "destination": "/leistungen/sparren-austauschen-oder-verstaerken/", "permanent": true },
+    { "source": "/leistungen/altbau-dachausbau/", "destination": "/ratgeber/altbau-dachausbau/", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",

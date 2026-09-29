@@ -9,32 +9,8 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#1E3A5F">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5SYTNJG6Z3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-5SYTNJG6Z3');
-  </script>
-  <script>
-    document.addEventListener('click', function(e) {
-      var link = e.target.closest && e.target.closest('a[href]');
-      if (!link) return;
-      var href = link.getAttribute('href') || '';
-      if (href.indexOf('tel:') === 0) {
-        gtag('event', 'contact', { method: 'phone', href: href });
-      } else if (href.indexOf('mailto:') === 0) {
-        gtag('event', 'contact', { method: 'email', href: href });
-      }
-    });
-  </script>
   <link rel="canonical" href="https://dachgeschossausbauduesseldorf.de/foerderrechner/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
+<style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -455,11 +431,10 @@
   <div class="leadform-wrap">
     <h2 style="color:var(--color-primary);margin-bottom:8px;font-size:1.75rem;text-align:center">Kostenlose Erstberatung anfragen</h2>
     <p class="leadform-sub">Erzählen Sie uns von Ihrem Projekt – wir melden uns innerhalb von 24 Stunden.</p>
-    <form action="/api/lead" method="POST">
+    <form action="https://odoo.saatpilot.de/contact" method="POST">
       <input type="hidden" name="service" value="Dachgeschossausbau">
       <input type="hidden" name="city" value="Düsseldorf">
       <input type="hidden" name="source" value="Website Formular">
-      <input type="hidden" name="redirect" value="/danke/">
       <input type="text" name="url" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="leadform-row">
         <div class="leadform-group">
@@ -504,11 +479,12 @@
         <textarea id="lf-message" name="message" class="leadform-textarea" rows="4" placeholder="Was planen Sie? Welche Vorstellungen haben Sie bereits? Wann möchten Sie loslegen?"></textarea>
       </div>
       <div class="leadform-check">
-        <input type="checkbox" id="lf-privacy" name="privacy" required>
+        <input type="checkbox" id="lf-privacy" name="consent" value="on" required>
         <label for="lf-privacy">Mit dem Absenden stimmen Sie unserer <a href="/datenschutz/">Datenschutzerklärung</a> zu. *</label>
       </div>
       <button type="submit" class="leadform-submit">Kostenlose Erstberatung anfragen</button>
     </form>
+<p class="lead-form-note">Ihre Anfrage kann an einen passenden Fachbetrieb aus der Region weitergeleitet werden.</p>
   </div>
 </section>
 
@@ -551,7 +527,7 @@
         <ul class="footer__links">
           <li><a href="tel:+4915216117439">+49 152 1611 7439</a></li>
           <li><a href="mailto:info@dachgeschossausbauduesseldorf.de">info@dachgeschossausbauduesseldorf.de</a></li>
-          <li>Hammer Str. 19<br>40219 Düsseldorf</li>
+          <li>Krehlstr. 100<br>70565 Stuttgart</li>
         </ul>
       </div>
     </div>
@@ -819,5 +795,6 @@ recalc();
   }
   </script>
 
+  <script src="/lead-form.js" defer></script>
 </body>
 </html>
